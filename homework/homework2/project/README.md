@@ -1,0 +1,1 @@
+#The Momentum strategy has long been a profitable quantitative strategy since the 20th century. However, its ability to generate alpha as decreased in the recent decades. Therefore, it is important to decide should the company continue to adopt this type of strategy or serach for newer options in order to create alpha. 
