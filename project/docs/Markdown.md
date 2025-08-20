@@ -1,22 +1,31 @@
-#Markdown File 
-To: Project Stakeholders
-From: Fangyi Jiang
-Date: 08/14/2025
-Subject: Stakeholder Memo – Momentum decision Update
+Project Overview & Reports
 
-Purpose:
-This memo provides an update on the progress of Project momentum decision and highlights key decisions required.
+High-level description of the project
 
-Summary:
-- Phase 1 completed
-- Project Scoping paragraph completed
-- All information is shared on the github Repo
+Stakeholder memos, business context docs
 
-Details:
-- A readme file containing prolem statement, stakehodler, useful answer, assumptions, known unknowns, lifestyle mapping and repo plan.
-- Development phase started on August 15.
+Executive summaries
 
+Technical Documentation
 
-Next Steps:
-- Tooling Setup and Python fundamentals start in the next hour.
-- Next update is expected to be on August 15th
+How the data pipeline works
+
+API documentation (if you build one)
+
+Model cards (explain model assumptions, limitations, performance)
+
+Architecture diagrams
+
+User Guides / Instructions
+
+How to run the code (setup, commands, configs)
+
+How to reproduce results
+
+How to deploy the project (if applicable)
+
+References
+
+Research papers or articles you based the project on
+
+Meeting notes / requirements documents

@@ -1,1 +1,0 @@
-# memos, personas, design notes 

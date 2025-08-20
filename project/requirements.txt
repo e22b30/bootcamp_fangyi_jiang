@@ -1,0 +1,22 @@
+# Core
+numpy
+pandas
+
+# Visualization
+matplotlib
+seaborn
+
+# Machine Learning
+scikit-learn
+statsmodels
+
+# Data Acquisition
+yfinance
+requests
+
+# Jupyter Notebooks
+jupyter
+notebook
+
+# Utilities
+python-dotenv
