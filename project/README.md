@@ -15,6 +15,15 @@ project-root/
 │── .env               # API keys / credentials (excluded from git)
 │── README.md          # Project overview
 
+Data Storage
+
+The folder structure for data is
+data/
+│── raw/               # Storage for the raw data pulled off AlphaVantage
+│── processed/         # Storage for processed data
+
+The data is stored in csv files and you can access them directly from .env using RAW_DATA and PROCESSED_DATA_..
+
 Lifecycle Progress
 
 This project follows a step-by-step lifecycle framework:

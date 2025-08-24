@@ -2,6 +2,7 @@ from typing import List, Dict
 import pandas as pd
 import os
 import datetime as dt
+import typing as t, pathlib
 
 def save_dataframe(df: pd.DataFrame, path: str, index: bool = False):
     """
@@ -64,3 +65,41 @@ def validate_df(df: pd.DataFrame, required_cols: List[str], dtypes_map: Dict[str
 def safe_filename(prefix: str, meta: Dict[str, str]) -> str:
     mid = "_".join([f"{k}-{str(v).replace(' ', '-')[:20]}" for k, v in meta.items()])
     return f"{prefix}_{mid}_{safe_stamp()}.csv"
+
+def validate_loaded(original, reloaded):
+    checks = {
+        'shape_equal': original.shape == reloaded.shape,
+        'date_is_datetime': pd.api.types.is_datetime64_any_dtype(reloaded['date']) if 'date' in reloaded.columns else False,
+        'price_is_numeric': pd.api.types.is_numeric_dtype(reloaded['price']) if 'price' in reloaded.columns else False,
+    }
+    return checks
+
+def detect_format(path: t.Union[str, pathlib.Path]):
+    s = str(path).lower()
+    if s.endswith('.csv'): return 'csv'
+    if s.endswith('.parquet') or s.endswith('.pq') or s.endswith('.parq'): return 'parquet'
+    raise ValueError('Unsupported format: ' + s)
+
+def write_df(df: pd.DataFrame, path: t.Union[str, pathlib.Path]):
+    p = pathlib.Path(path); p.parent.mkdir(parents=True, exist_ok=True)
+    fmt = detect_format(p)
+    if fmt == 'csv':
+        df.to_csv(p, index=False)
+    else:
+        try:
+            df.to_parquet(p)
+        except Exception as e:
+            raise RuntimeError('Parquet engine not available. Install pyarrow or fastparquet.') from e
+    return p
+
+def read_df(path: t.Union[str, pathlib.Path]):
+    p = pathlib.Path(path)
+    fmt = detect_format(p)
+    if fmt == 'csv':
+        return pd.read_csv(p, parse_dates=['date']) if 'date' in pd.read_csv(p, nrows=0).columns else pd.read_csv(p)
+    else:
+        try:
+            return pd.read_parquet(p)
+        except Exception as e:
+            raise RuntimeError('Parquet engine not available. Install pyarrow or fastparquet.') from e
+
